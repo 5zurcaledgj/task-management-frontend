@@ -28,6 +28,8 @@ const taskReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload
       };
+    case tasksActionTypes.CLEAR_TASKS:
+      return INITIAL_STATE;
     default:
       return state;
   }

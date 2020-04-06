@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
+import { persistStore } from "redux-persist";
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from './root.reducer';
@@ -12,5 +13,6 @@ if ('development' === process.env.NODE_ENV) {
 }
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
+const persistor = persistStore(store);
 
-export default store;
+export { store, persistor };
