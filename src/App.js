@@ -23,8 +23,6 @@ const App = ({ userToken }) => {
             userToken ? <HomePage /> : <Redirect to="/signin" />
           }
         ></Route>
-        <Route path="/tasks/list" component={TasksListPage}></Route>
-        <Route path="/tasks/create" exact component={TaskCreationPage}></Route>
         <Route
           path="/signup"
           exact

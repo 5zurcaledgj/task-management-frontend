@@ -85,7 +85,9 @@ export const signInStartAsync = userInfo => {
 
 export const logoutUserStartAsync = userToken => {
   return dispatch => {
-    dispatch(logoutUserStart());
+
+    dispatch(logoutUserSuccess());
+    dispatch(clearTasks());
 
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + userToken);
@@ -96,7 +98,10 @@ export const logoutUserStartAsync = userToken => {
       redirect: 'manual'
     };
 
-    return fetchInfoFromApi('/users/logout', requestOptions, [logoutUserSuccess, clearTasks], logoutUserFailure, dispatch)
+    return fetch(API_BASE_URL + '/users/login', requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(e => console.log(e));
   };
 }
 

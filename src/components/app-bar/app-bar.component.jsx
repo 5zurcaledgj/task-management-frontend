@@ -23,6 +23,7 @@ const PrimaryAppBar = ({ userToken, logoutUser }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const handleDrawerOpen = () => {
+    console.log('handleDrawerOpen');
     setIsDrawerOpen(true);
   };
 
@@ -40,6 +41,8 @@ const PrimaryAppBar = ({ userToken, logoutUser }) => {
     setAnchorEl(e.currentTarget);
   };
 
+  const [mainMessage, setMainMessage] = useState('Welcome to your dashboard')
+
   return (
     <div className={classes.root}>
       <AppBar
@@ -55,12 +58,12 @@ const PrimaryAppBar = ({ userToken, logoutUser }) => {
             className={clsx(classes.menuButton, {
               [classes.hide]: isDrawerOpen,
             })}
-            onClick={handleDrawerOpen}
+            onClick={() => { setIsDrawerOpen(true); }}
           >
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Task Management App
+            {mainMessage}
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -109,7 +112,7 @@ const PrimaryAppBar = ({ userToken, logoutUser }) => {
         </Toolbar>
 
       </AppBar>
-      {userToken && <MiniDrawer handleDrawerClose={handleDrawerClose} isDrawerOpen={isDrawerOpen} />}
+      {userToken && <MiniDrawer setMainMessage={setMainMessage} handleDrawerClose={handleDrawerClose} isDrawerOpen={isDrawerOpen} />}
     </div>
   );
 };
